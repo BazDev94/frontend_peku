@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "frontend_peku:build:production"
+              "buildTarget": "frontend_peku:build:production"
             },
             "development": {
-              "browserTarget": "frontend_peku:build:development"
+              "buildTarget": "frontend_peku:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend_peku:build"
+            "buildTarget": "frontend_peku:build"
           }
         },
         "test": {
