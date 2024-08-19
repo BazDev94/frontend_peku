@@ -1,0 +1,24 @@
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'wg-icon';
+  font-style: normal;
+  font-weight: normal;
+ 
+  /* fix buttons height */
+  line-height: 1em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+}
+ 
+.icon-alluvioni::before { content: '\e800'; /* Altri stili qui, come font-family se stai usando un icon font */ }
+.icon-altri::before { content: '\e801'; /* Altri stili qui */ }
+.icon-frana::before { content: '\e802'; /* Altri stili qui */ }
+.icon-sanitario::before { content: '\e803'; /* Altri stili qui */ }
+.icon-terremoto::before { content: '\e804'; /* Altri stili qui */ }
+.icon-vento::before { content: '\e805'; /* Altri stili qui */ }
+
+/* Se necessario applicare uno zoom/scalatura */
+.icon {
+  display: inline-block;
+  transform: scale(1); /* Aggiusta il fattore di scala secondo necessità */
+}

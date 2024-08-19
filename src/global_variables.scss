@@ -1,0 +1,254 @@
+//Custom Color
+$primary: #6ba4d9;
+$secondary:#737373;
+$success: #45a741;
+$danger: #e03232;
+$warning: #ea8024;
+$alert: #dbd800;
+$info: #64af99;
+
+$black: #0f0f10;
+$white: #ffffff;
+$light: #f8f9fa;
+
+//dark & light
+$dark-primary: darken( $primary, 10% );
+$light-primary: lighten( $primary, 10% );
+$dark-secondary: darken( $secondary, 10% );
+$light-secondary: lighten( $secondary, 10% );
+$dark-success: darken( $success, 10% );
+$light-success: lighten( $success, 10% );
+$dark-danger: darken( $danger, 10% );
+$light-danger: lighten( $danger, 10% );
+$dark-warning: darken( $warning, 10% );
+$light-warning: lighten( $warning, 10% );
+$dark-info: darken( $info, 10% );
+$light-info: lighten( $info, 10% );
+$light-black: lighten( $black, 20% );
+
+$h-header: 119px;
+$h-footer: 73px;
+
+$font-size-1x: 14px;
+$font-size-2x: 16px;
+$font-size-default: 18px;
+
+
+
+
+
+/*WIKI GIUSTIZIA*/
+
+$wg-blue:#1e3c64;
+$wg-blue-light: lighten( $wg-blue, 10% );
+$wg-blue-dark: darken( $wg-blue, 10% );
+$wg-orange:#ff4917;
+$wg-orange-light: lighten( $wg-orange, 10% );
+$wg-orange-dark: darken( $wg-orange, 10% );
+$wg-black:#343434;
+$wg-black-light: lighten( $wg-black, 10% );
+$wg-black-dark: darken( $wg-black, 10% );
+
+/* Titillium+Web:300,400,600,700 */
+
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium Web Light'), local('TitilliumWeb-Light'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Light.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Light.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium Web Light'), local('TitilliumWeb-Light'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Light.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Light.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web Regular'), local('TitilliumWeb-Regular'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Regular.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Titillium Web SemiBold'), local('TitilliumWeb-SemiBold'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Titillium Web SemiBold'), local('TitilliumWeb-SemiBold'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-SemiBold.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Bold.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Bold.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Titillium Web Bold'), local('TitilliumWeb-Bold'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Bold.woff2') format('woff2'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Bold.woff') format('woff'),
+  url('assets/fonts/Titillium_Web/TitilliumWeb-Bold.ttf') format('truetype');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+
+
+//Custom Color
+$primary: #eef4ed;
+$secondary: #ababab;
+
+$header: #004070;
+$decoration: #b3771e;
+
+$success: #57cc99; //#4db748
+// $danger: rgb(173, 17, 59);
+$danger: $decoration;
+$warning: #ffdb5f;
+$info: #38a3a5; //#4cc2c5
+$alert: #f76402;
+
+$black: #0f0f10;
+$white: #ffffff;
+$light: #f8f9fa;
+
+$ppt: rgba(#57cc99, 0.6);
+$scorm: rgba(#22577a, 0.5);
+$rise: $scorm;
+$infographic: rgba(#38a3a5, 0.8);
+
+//dark & light
+$dark-primary: darken($primary, 10%);
+$light-primary: lighten($primary, 10%);
+$dark-secondary: darken($secondary, 10%);
+$light-secondary: lighten($secondary, 10%);
+$dark-success: darken($success, 10%);
+$light-success: lighten($success, 10%);
+$dark-danger: darken($danger, 10%);
+$light-danger: lighten($danger, 10%);
+$dark-warning: darken($warning, 10%);
+$light-warning: lighten($warning, 10%);
+$dark-info: darken($info, 10%);
+$light-info: lighten($info, 10%);
+$dark-alert: darken($alert, 10%);
+$light-alert: lighten($alert, 10%);
+
+// Override default color
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "danger": $danger,
+  "warning": $warning,
+  "info": $info,
+  "black": $black,
+);
+
+$h-header: 100px;
+$h-footer: 200px;
+
+$rad: 10px;
+
+@mixin ellipsis($width: 100%) {
+  display: inline-block;
+  max-width: $width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin shadow($params) {
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
+
+$shadow-1: 0px 0px 20px 0 rgba($black, 0.25),
+  0px 0px 30px rgba($black, 0.2) inset;
+$shadow-2: 0px 2px 5px rgba($black, 0.25);
+
+@mixin pillow() {
+  padding: 0 5px;
+  box-shadow: 0 0 20px 0 rgba($black, 0.5);
+  border-radius: 10px;
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+    transition: all 0.2s ease;
+  }
+}
+
+@mixin flags {
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  margin: 8px 0;
+  text-align: center;
+  top: 0;
+  left: 30px;
+  font-weight: bold;
+  background: $info;
+  box-shadow: 0 0 0 1px $info;
+}
+
+@mixin glassmorphism($blur: 7px, $rad: 10px) {
+  background: rgba($white, 0.75);
+  // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  @include shadow($shadow-2);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border-radius: $rad;
+  border: 1px solid rgba($white, 0.18);
+}
+
+
