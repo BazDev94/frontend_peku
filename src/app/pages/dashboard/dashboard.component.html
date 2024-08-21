@@ -1,7 +1,85 @@
 <h1>Dashboard</h1>
-<div class="card">
-    <div class="card-head">Lorem ipsum - dashboard</div>
+<!-- <div class="card">
+    <div class="card-head">Sintesi del Budget Corrente | {{today | date: 'MM/yyyy'}}</div>
     <div class="card-body">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quas ducimus soluta, quasi aut ipsa non, ullam enim rem repudiandae, vitae provident animi. Inventore rerum, voluptas optio dignissimos blanditiis modi illo!
+        <div class="budget-summary">
+            <div class="budget-category">
+                <h3>Necessario</h3>
+                <p>Allocated: {{ getBudgetAmountByCategory(4, 'allocated_amount') }}</p>
+                <p>Spent: {{ getBudgetAmountByCategory(4, 'spent_amount') }}</p>
+                <p>Remaining: {{ getBudgetAmountByCategory(4, 'remaining_amount') }}</p>
+            </div>
+
+            <div class="budget-category">
+                <h3>Extra</h3>
+                <p>Allocated: {{ getBudgetAmountByCategory(5, 'allocated_amount') }}</p>
+                <p>Spent: {{ getBudgetAmountByCategory(5, 'spent_amount') }}</p>
+                <p>Remaining: {{ getBudgetAmountByCategory(5, 'remaining_amount') }}</p>
+            </div>
+
+            <div class="budget-category">
+                <h3>Risparmio</h3>
+                <p>Allocated: {{ getBudgetAmountByCategory(6, 'allocated_amount')}}</p>
+                <p>Spent: {{ getBudgetAmountByCategory(6, 'spent_amount')}}</p>
+                <p>Remaining: {{ getBudgetAmountByCategory(6, 'remaining_amount')}}</p>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="card">
+    <div class="card-head">
+        Sintesi del Budget Corrente | {{today | date: 'MM/yyyy'}}
+    </div>
+    <div class="card-body">
+        <div class="budget-summary">
+            <!-- Itera attraverso gli oggetti dell'array CurrentBudget -->
+            <div class="budget-category" *ngFor="let item of CurrentBudget">
+                <span [class]="getColorClasses(item.category)">
+                 <i [class]="utils.getCategoryIcon(item.category)"></i>{{ utils.getCategoryDescription(item.category) }}
+                  </span>               
+                <p>Allocated: {{ item.allocated_amount }}</p>
+                <p>Spent: {{ item.spent_amount }}</p>
+                <p>Remaining: {{ item.remaining_amount }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-head">Spese Mensili | {{today | date: 'MM/yyyy'}}</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm" *ngFor="let mont of MonthlyExpenses">
+                <h3>Categoria : {{mont.category__name}}</h3>
+                <p>Speso : {{ mont.total | currency : 'EUR' : 'symbol'}}</p>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div class="card">
+    <div class="card-head">Progressi Verso gli Obiettivi</div>
+    <div class="card-body" *ngFor="let mont of GoalsProgress">
+        <p *ngIf="GoalsProgress">Name Target: {{ mont.goal_name }}</p>
+        <p *ngIf="GoalsProgress">Total Target: {{ mont.target_amount | currency : 'EUR' : 'symbol' }}</p>
+        <p *ngIf="GoalsProgress">Total Saved: {{ mont.current_amount | currency : 'EUR' : 'symbol'}}</p>
+
+
+        <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              [style.width]="getProgressPercentage(mont.current_amount, mont.target_amount) + '%'"
+              [attr.aria-valuenow]="getProgressPercentage(mont.current_amount, mont.target_amount)"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              {{ getProgressPercentage(mont.current_amount, mont.target_amount) }}%
+            </div>
+          </div>
     </div>
 </div>

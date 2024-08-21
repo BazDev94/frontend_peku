@@ -1,12 +1,97 @@
-<div class="sticky-top">
-  <div class="container-fluid top-menu-wrapper px-3">
-    <div class="container d-flex align-items-center justify-content-between">
-      <div class="version">
-        <div class="d-none d-md-block">
-          <strong class="font-wiki">PEKU</strong>
+<div class="head" [ngClass]="getHeaderClass()">
+  <div class="head-content">
+    <div class="head-content-left">
+      <div class="search-container">
+        <div *ngIf="!canShowSearchAsOverlay" class="normal-search">
+          <input type="search" class="search" placeholder="Search..." id="" name="">
+          <i class="fas fa-search search-icon "></i>
+        </div>
+        <div *ngIf="canShowSearchAsOverlay" class="search-overlay">
+          <button class="search-menu-btn ripple" [matMenuTriggerFor]="searchOverlay">
+            <i class="fas fa-search search-icon"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="head-content-right">
+      <div class="head-menu">
+        <div class="head-menu-item">
+          <button class="head-menu-item-btn ripple">
+            <img [src]="'../assets/img/logo.png'" alt="img" class="flag">
+          </button>
+        </div>
+        <div class="head-menu-item">
+          <button class="head-menu-item-btn ripple">
+            <i class="fas fa-expand menu-icon"></i>
+          </button>
+        </div>
+        <div class="head-menu-item">
+          <button class="head-menu-item-btn ripple" [cdkMenuTriggerFor]="notificationOverlay">
+            <i class="far fa-bell menu-icon"></i>
+          </button>
+        </div>
+        <div class="head-menu-item">
+          <button class="head-menu-item-btn ripple">
+            <i class="far fa-comment-alt menu-icon"></i>
+          </button>
+        </div>
+      </div>
+      <div class="head-user-avatar-container">
+        <div class="head-user-avatar" [cdkMenuTriggerFor]="userOverlay">
+          <img [src]="'../assets/img/logo.png'" alt="user-avatar" class="user-avatar">
+          <div class="circle-indicator pulse"></div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
+
+<mat-menu #searchOverlay>
+  <div class="overlay overlay-search overlay-fall" mat-menu>
+    <input type="search" class="search">
+    <button class="search-btn">
+      <i class="fas fa-search search-icon"></i>
+    </button>
+  </div>
+</mat-menu>
+
+<ng-template #notificationOverlay>
+  <div class="overlay overlay-notification overlay-fall" cdkMenu>
+    <ul>
+      <li class="notification-head-container">
+        <div class="notification-head">Notifica</div>
+        <span class="view-all-link">
+          <a>View All</a>
+        </span>
+      </li>
+
+      <li class="notification-message-container" *ngFor="let notification of notifications" cdkMenuItem>
+        <i [class]="notification.icon"></i>
+        <div class="notification-subject">
+          {{notification.subject}}
+        </div>
+        <p class="notification-description">
+          {{notification.description}}
+        </p>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+
+
+
+<ng-template #userOverlay>
+  <div class="overlay overlay-user overlay-fall" cdkMenu>
+    <ul>
+      <li *ngFor="let item of userItem">
+        <a>
+          <i class="icon" [ngClass]="item.icon"></i>
+          <span>{{item.label}}</span>
+        </a>
+
+      </li>
+    </ul>
+
+  </div>
+</ng-template>
