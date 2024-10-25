@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Category, Transaction } from '../interfaces/utils';
+import { Category, Income, Transaction } from '../interfaces/utils';
 import { MatDialog } from '@angular/material/dialog';
 import { transition } from '@angular/animations';
 import { EditTransactionComponent } from '../components/edit-transaction/edit-transaction.component';
+import { BudgetComponent } from '../components/budget/budget.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilsService {
+  users = [{ nome: "Baz", id: 1 }, { nome: "Cla", id: 2 }];
 
   aCat: any;
 
@@ -47,31 +49,56 @@ export class UtilsService {
     }
     return "n.a.";
   }
-  openEditDialog(transaction?: Transaction): void {
+  openEditDialog(code:string , transaction?: Transaction, income?:Income): void {
     console.log('transaction', transaction);
-    if (!transaction) {
-      transaction = {
-        id: 0,
-        name: '',
-        date: Date.now().toString(),
-        amount: 0,
-        category: '',
-        description: ''
-      };
-    }
-    const dialogRef = this.dialog.open(EditTransactionComponent, {
-      maxWidth: '60vh',
-      minWidth: '500px',
-      // disableClose: false,
-      // width: '400px',
-      data: { ...transaction }
-    });
-
-    dialogRef.afterClosed().subscribe((result: Transaction) => {
-      if (result) {
-        console.log('The dialog was closed', result);
+    if(code == 'income'){
+      if(!income){
+        income = {
+          description: '',
+          date: Date.now().toString(),
+          amount: 0,
+          source: '',
+          user : 1
+        };
       }
-    });
+      const dialogRef = this.dialog.open(EditTransactionComponent, {
+        maxWidth: '60vh',
+        minWidth: '500px',
+        data: { income, editMode: 'income', title: 'Edit Income' }
+      });
+  
+      dialogRef.afterClosed().subscribe((result: Income) => {
+        if (result) {
+          console.log('The dialog was closed', result);
+        }
+      });
+    }
+    else if(code == 'transaction'){
+      if (!transaction) {
+        transaction = {
+          name: '',
+          date: Date.now().toString(),
+          amount: 0,
+          category: 0,
+          description: '',
+          user : 1
+        };
+      }
+      const dialogRef = this.dialog.open(EditTransactionComponent, {
+        maxWidth: '60vh',
+        minWidth: '500px',
+        // disableClose: false,
+        // width: '400px',
+        data: { transaction, editMode: 'transaction', title: 'Edit Transaction' }
+      });
+  
+      dialogRef.afterClosed().subscribe((result: Transaction) => {
+        if (result) {
+          console.log('The dialog was closed', result);
+        }
+      });
+    }
+   
   }
   formatDateToYYYYMMDD(date: any): string {
     if (!(date instanceof Date)) {

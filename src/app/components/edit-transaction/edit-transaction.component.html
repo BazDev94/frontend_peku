@@ -1,23 +1,25 @@
-<h2 mat-dialog-title>{{data.id ? 'Edit Transaction': 'Add Transaction'}}</h2>
 
-<mat-dialog-content class="mat-typography">
+
+<h2 mat-dialog-title>{{data.title }}</h2>
+
+<mat-dialog-content class="mat-typography" *ngIf="data.editMode === 'transaction'">
   <form class="example-form">
     <!-- Amount -->
     <mat-form-field class="example-full-width">
       <mat-label>Amount</mat-label>
-      <input matInput placeholder="Ex. 450.00" [(ngModel)]="data.amount" name="amount"  [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Ex. 450.00" [(ngModel)]="obj.amount" name="amount"  [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
     <!-- Category -->
     <mat-form-field class="example-full-width">
       <mat-label>Category</mat-label>
-      <input matInput placeholder="Ex. 4" [(ngModel)]="data.category" name="category"  [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Ex. 4" [(ngModel)]="obj.category" name="category"  [ngModelOptions]="{standalone: true}">
     </mat-form-field>
    
     <!-- Date -->
     <mat-form-field>
       <mat-label>Choose a date</mat-label>
-      <input matInput [matDatepicker]="picker"  [(ngModel)]="data.date"   [ngModelOptions]="{standalone: true}">
+      <input matInput [matDatepicker]="picker"  [(ngModel)]="obj.date"   [ngModelOptions]="{standalone: true}">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -25,22 +27,68 @@
     <!-- User (optional) -->
     <mat-form-field class="example-full-width">
       <mat-label>User</mat-label>
-      <input matInput placeholder="Ex. 1" [(ngModel)]="data.user" name="user"  [ngModelOptions]="{standalone: true}">
+      <input matInput placeholder="Ex. 1" [(ngModel)]="obj.user" name="user"  [ngModelOptions]="{standalone: true}">
     </mat-form-field>
 
 
      <!-- Description -->
      <mat-form-field class="example-full-width">
         <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Ex. affitto mese luglio" [(ngModel)]="data.description" name="description"  [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea matInput placeholder="Ex. affitto mese luglio" [(ngModel)]="obj.description" name="description"  [ngModelOptions]="{standalone: true}"></textarea>
       </mat-form-field>
   
   </form>
 
   <button mat-flat-button color="info" (click)="onClose()">Close</button>
 
-  <button mat-flat-button color="info" (click)="Save(data)">{{data.id ? 'Update': 'Save'}}</button>
+  <button mat-flat-button color="info" (click)="Save(obj)">{{obj.id ? 'Update': 'Save'}}</button>
 
-  <button *ngIf="data.id" mat-flat-button color="info" (click)="Delete(data)">Delete</button>
+  <button *ngIf="obj.id" mat-flat-button color="info" (click)="Delete(obj)">Delete</button>
+
+</mat-dialog-content>
+
+
+<mat-dialog-content class="mat-typography" *ngIf="data.editMode === 'income'">
+  <form class="example-form">
+    <!-- Amount -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Amount</mat-label>
+      <input matInput placeholder="Ex. 450.00" [(ngModel)]="obj.amount" name="amount"  [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+    <!-- Source -->
+    <mat-form-field class="example-full-width">
+      <mat-label>Source</mat-label>
+      <input matInput placeholder="Ex. 4" [(ngModel)]="obj.category" name="category"  [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+   
+    <!-- Date -->
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="picker"  [(ngModel)]="obj.date"   [ngModelOptions]="{standalone: true}">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- User (optional) -->
+    <mat-form-field class="example-full-width">
+      <mat-label>User</mat-label>
+      <input matInput placeholder="Ex. 1" [(ngModel)]="obj.user" name="user"  [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+
+
+     <!-- Description -->
+     <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Ex. cedolino mese luglio" [(ngModel)]="obj.description" name="description"  [ngModelOptions]="{standalone: true}"></textarea>
+      </mat-form-field>
+  
+  </form>
+
+  <button mat-flat-button color="info" (click)="onClose()">Close</button>
+
+  <button mat-flat-button color="info" (click)="Save(obj)">{{obj.id ? 'Update': 'Save'}}</button>
+
+  <button *ngIf="obj.id" mat-flat-button color="info" (click)="Delete(obj)">Delete</button>
 
 </mat-dialog-content>

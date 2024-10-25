@@ -24,7 +24,7 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
    private _liveAnnouncer = inject(LiveAnnouncer);
 
   aTransactions: any = [];
-  displayedColumns: string[] = ['id','amount', 'category', 'description', 'date','azione'];
+  displayedColumns: string[] = ['user','amount', 'category', 'description', 'date','azione'];
   dataSource = new MatTableDataSource<Transaction>();
   clickedRows = new Set<Transaction>();
   
@@ -38,8 +38,6 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
     this.sort.sort({ id: 'date', start: 'desc',disableClear: false }); 
     this.dataSource.sort = this.sort;
     this.cdr.detectChanges();
-
-
   }
 
   ngOnInit() {

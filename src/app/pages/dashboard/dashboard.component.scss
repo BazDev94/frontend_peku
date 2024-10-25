@@ -50,3 +50,27 @@ h1 {
     background-color: #495057;
     color: #ddd;
   }
+  .example-additional-selection {
+    opacity: 0.75;
+    font-size: 0.75em;
+  }
+  .custom-form-field {
+    width: 300px;
+    background-color: #f0f0f0;
+    color: #333;
+  }
+  
+  .custom-form-field .mat-select-trigger {
+    color: #007bff;
+  }
+  
+  .custom-form-field .mat-option {
+    background-color: #ffffff;
+    color: #000;
+  }
+  
+  .bg-custom {
+    background-color: #495057;
+    --bs-bg-opacity: 1;
+
+  }

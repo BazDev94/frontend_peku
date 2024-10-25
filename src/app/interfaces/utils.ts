@@ -19,11 +19,11 @@ export interface Category{
     icon:string;
 }
 export interface Transaction{
-    id:number;
+    id?:number;
     name:string;
     date:string;
     amount:number;
-    category:string;
+    category:number;
     description:string;
     user?:number;
 }
@@ -47,10 +47,11 @@ export interface SavingGoal {
   }
 
 export interface Income {
+  id?         : number
   user        : number
   source      : string
   amount      : number
-  date        : Date
+  date        : string
   description : string
 }
 
@@ -60,4 +61,9 @@ export interface Investment  {
   initial_amount  :number;
   current_value   :number;
   purchase_date   :Date;
+}
+
+export interface TransMonth   {
+    category__name: string,
+    total: number
 }

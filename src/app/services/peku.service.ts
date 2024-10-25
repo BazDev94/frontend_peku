@@ -2,7 +2,7 @@ import { Injectable, Injector } from '@angular/core';
 import { Observable } from "rxjs";
 import { ApiService } from "../../app/services/api.service";
 import { map } from "rxjs/operators";
-import { Budget, SideNavToggle, Transaction } from '../interfaces/utils';
+import { Budget, SideNavToggle, Transaction, User } from '../interfaces/utils';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -13,18 +13,18 @@ export class PekuService {
   constructor(private injector: Injector ,private apiService: ApiService,) { }
 
 
-  LoginUser(userProfile: any): Observable<any> {
+  // LoginUser(userProfile: any): Observable<any> {
 
-    let completeUrl = 'user/login/';
-    console.log('url:', completeUrl);
-    return this.apiService.post(completeUrl, userProfile).pipe(
-      map((data) => {
-        localStorage.setItem('data', data.jwt);
-        localStorage.setItem('currentUser', JSON.stringify(data));
-        return data;
-      })
-    );
-  }
+  //   let completeUrl = 'user/login/';
+  //   console.log('url:', completeUrl);
+  //   return this.apiService.post(completeUrl, userProfile).pipe(
+  //     map((data) => {
+  //       localStorage.setItem('data', data.jwt);
+  //       localStorage.setItem('currentUser', JSON.stringify(data));
+  //       return data;
+  //     })
+  //   );
+  // }
   getToken(){
     return localStorage.getItem('data')
   }
@@ -33,12 +33,14 @@ export class PekuService {
     const completeUrl = 'transaction/';
     return this.apiService.get(completeUrl)as Observable<Transaction[]>;
   }
-  getMETransaction(Year:any,Month:any): Observable<Budget[]> {
-    const completeUrl = 'transaction/monthly_expenses/?year='+Year+'&month='+Month;
+  getMETransaction(Year:any,Month:any,User:any): Observable<Budget[]> {
+    const completeUrl = 'transaction/monthly_expenses/?year='+Year+'&month='+Month+'&user='+User;
     return this.apiService.get(completeUrl)as Observable<Budget[]>;
   }
   postTransactions(obj:Transaction): Observable<Transaction> {
     const completeUrl = 'transaction/';
+    console.log("obj>",obj);
+
     return this.apiService.post(completeUrl,obj)as Observable<Transaction>;
   }
   putTransactions(obj:Transaction): Observable<Transaction[]> {
@@ -52,6 +54,10 @@ export class PekuService {
   // Budgets API
   getBudgets(): Observable<Budget[]> {
     const completeUrl = 'budget/';
+    return this.apiService.get(completeUrl)as Observable<Budget[]>;
+  }
+  getBudgetsByUser(id:number,year:number,month:number): Observable<Budget[]> {
+    const completeUrl = 'budget/?user='+id+'&year='+year+'&month='+month;
     return this.apiService.get(completeUrl)as Observable<Budget[]>;
   }
   getBSBudgets(user:number): Observable<Budget[]> {
@@ -68,7 +74,9 @@ export class PekuService {
   postAMIBudgets(YearAndMonth:any): Observable<Budget[]> {
     // allocate_monthly_income
     // servirebbe anche USerID
-    const completeUrl = 'budget/allocate_monthly_income';
+    console.log('YearAndMonth:',YearAndMonth)
+    const completeUrl = 'budget/allocate_monthly_income/';
+    console.log('obj:',YearAndMonth)
     return this.apiService.post(completeUrl,YearAndMonth)as Observable<Budget[]>;
   }
   postURBudgets(user:any): Observable<Budget[]> {
@@ -81,8 +89,8 @@ export class PekuService {
   postRMBBudgets(user:any): Observable<Budget[]> {
     // reset_monthly_budget
     // servirebbe anche USerID
-    user= 1
-    const completeUrl = 'budget/update_remaining';
+    // user= 1
+    const completeUrl = 'budget/reset_monthly_budget/';
     return this.apiService.post(completeUrl,user)as Observable<Budget[]>;
   }
   putBudgets(obj:Budget): Observable<Budget[]> {
@@ -126,6 +134,26 @@ export class PekuService {
   }
   deleteCategories(obj:any): Observable<any> {
     const completeUrl = 'category/'+ obj.id + '/';
+    return this.apiService.delete(completeUrl)as Observable<any>;
+  }
+
+
+  getIncome(): Observable<any> {
+    const completeUrl = 'income/';
+    return this.apiService.get(completeUrl)as Observable<any>;
+  }
+
+  postIncome(obj:any): Observable<any> {
+    const completeUrl = 'income/';
+    return this.apiService.post(completeUrl,obj)as Observable<any>;
+  }
+  putIncome(obj:any): Observable<any> {
+    const completeUrl = 'income/'+ obj.id + '/';
+    return this.apiService.put(completeUrl,obj)as Observable<any>;
+  }
+
+  deleteIncome(obj:any): Observable<any> {
+    const completeUrl = 'income/'+ obj.id + '/';
     return this.apiService.delete(completeUrl)as Observable<any>;
   }
   

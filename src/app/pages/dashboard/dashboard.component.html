@@ -1,66 +1,68 @@
-<h1>Dashboard</h1>
-<!-- <div class="card">
-    <div class="card-head">Sintesi del Budget Corrente | {{today | date: 'MM/yyyy'}}</div>
-    <div class="card-body">
-        <div class="budget-summary">
-            <div class="budget-category">
-                <h3>Necessario</h3>
-                <p>Allocated: {{ getBudgetAmountByCategory(4, 'allocated_amount') }}</p>
-                <p>Spent: {{ getBudgetAmountByCategory(4, 'spent_amount') }}</p>
-                <p>Remaining: {{ getBudgetAmountByCategory(4, 'remaining_amount') }}</p>
-            </div>
+<!-- <h1>Dashboard</h1>
 
-            <div class="budget-category">
-                <h3>Extra</h3>
-                <p>Allocated: {{ getBudgetAmountByCategory(5, 'allocated_amount') }}</p>
-                <p>Spent: {{ getBudgetAmountByCategory(5, 'spent_amount') }}</p>
-                <p>Remaining: {{ getBudgetAmountByCategory(5, 'remaining_amount') }}</p>
+  <div class="container">  
+    <div class="row">
+      <div class="col-md-6 mb-4" *ngFor="let user of users; let i = index">
+        <div class="card">
+          <div class="card-head bg-custom text-white p-2">
+            Sintesi Budget Mese | {{ selectedMonth}}/{{ selectedYear }} | {{ user.nome }}
+          </div>
+          <div class="card-head">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="yearSelect">Anno:</label>
+                <select id="yearSelect" [(ngModel)]="selectedYear" (change)="onYearChange()">
+                  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="monthSelect">Mese:</label>
+                <select id="monthSelect" [(ngModel)]="selectedMonth" (change)="onMonthChange()">
+                  <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+                </select>
+              </div>
             </div>
-
-            <div class="budget-category">
-                <h3>Risparmio</h3>
-                <p>Allocated: {{ getBudgetAmountByCategory(6, 'allocated_amount')}}</p>
-                <p>Spent: {{ getBudgetAmountByCategory(6, 'spent_amount')}}</p>
-                <p>Remaining: {{ getBudgetAmountByCategory(6, 'remaining_amount')}}</p>
-            </div>
-        </div>
-    </div>
-</div> -->
-
-<div class="card">
-    <div class="card-head">
-        Sintesi del Budget Corrente | {{today | date: 'MM/yyyy'}}
-    </div>
-    <div class="card-body">
-        <div class="budget-summary">
-            <!-- Itera attraverso gli oggetti dell'array CurrentBudget -->
-            <div class="budget-category" *ngFor="let item of CurrentBudget">
+          </div>
+          <div class="card-body">
+            <div class="row" *ngFor="let item of userCurrentBudget[user.id]">
+              <div class="budget-category" *ngIf="item.user === user.id">
                 <span [class]="getColorClasses(item.category)">
-                 <i [class]="utils.getCategoryIcon(item.category)"></i>{{ utils.getCategoryDescription(item.category) }}
-                  </span>               
+                  <i [class]="utils.getCategoryIcon(item.category)"></i>
+                  {{ utils.getCategoryDescription(item.category) }}
+                </span>
                 <p>Allocated: {{ item.allocated_amount }}</p>
                 <p>Spent: {{ item.spent_amount }}</p>
                 <p>Remaining: {{ item.remaining_amount }}</p>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-
-
-
-<div class="card">
-    <div class="card-head">Spese Mensili | {{today | date: 'MM/yyyy'}}</div>
-    <div class="card-body">
+  </div>
+  
+      <div class="container">
         <div class="row">
-            <div class="col-sm" *ngFor="let mont of MonthlyExpenses">
-                <h3>Categoria : {{mont.category__name}}</h3>
-                <p>Speso : {{ mont.total | currency : 'EUR' : 'symbol'}}</p>
+          <div class="col-md-6 mb-4" *ngFor="let user of users; let i = index" (ngInit)="monthlyExpenses(user.id)">
+            <div class="card">
+              <div class="card-head bg-custom text-white p-2">
+                Transazioni {{user.nome}} Mensili | {{today | date: 'MM/yyyy'}}
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6" *ngFor="let mont of userExpenses[user.id]">
+                    <h5>Categoria: {{mont.category__name}}</h5>
+                    <p>Speso: {{mont.total | currency : 'EUR' : 'symbol'}}</p>
+                  </div>
+                </div>
+              </div>
             </div>
-
-
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+      
+
+
 <div class="card">
     <div class="card-head">Progressi Verso gli Obiettivi</div>
     <div class="card-body" *ngFor="let mont of GoalsProgress">
@@ -82,4 +84,95 @@
             </div>
           </div>
     </div>
+</div> -->
+
+<h1>Dashboard</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let user of utils.users; let i = index">
+      <div class="card">
+        <div class="card-head bg-custom text-white p-2">
+          Sintesi Budget Mese | {{ userSelections[user.id].month }}/{{ userSelections[user.id].year }} | {{ user.nome }}
+        </div>
+        <div class="card-head">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="yearSelect-{{user.id}}">Anno:</label>
+              <select id="yearSelect-{{user.id}}" [(ngModel)]="userSelections[user.id].year" (change)="onYearChange(user.id)">
+                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="monthSelect-{{user.id}}">Mese:</label>
+              <select id="monthSelect-{{user.id}}" [(ngModel)]="userSelections[user.id].month" (change)="onMonthChange(user.id)">
+                <option *ngFor="let month of months" [value]="month.value">{{ month.label }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div  *ngIf="userCurrentBudget[user.id].length != 0; else noCurrentBudget">
+          <div class="row" *ngFor="let item of userCurrentBudget[user.id]">
+            <div class="budget-category" *ngIf="item.user === user.id">
+              <span [class]="getColorClasses(item.category)">
+                <i [class]="utils.getCategoryIcon(item.category)"></i>
+                {{ utils.getCategoryDescription(item.category) }}
+              </span>
+              <p>Allocated: {{ item.allocated_amount }}</p>
+              <p>Spent: {{ item.spent_amount }}</p>
+              <p>Remaining: {{ item.remaining_amount }}</p>
+            </div>
+          </div>
+        </div>
+        <ng-template #noCurrentBudget class="card-body">
+          <div class="row">
+            <div class="budget-category">
+              Content to render when condition is false.
+            </div>
+          </div> </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mb-4" *ngFor="let user of utils.users">
+      <div class="card">
+        <div class="card-head bg-custom text-white p-2">
+          Transazioni {{user.nome}} Mensili | {{userSelections[user.id].month | date: 'MM/yyyy'}}
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6" *ngFor="let mont of userExpenses[user.id]">
+              <h5>Categoria: {{mont.category__name}}</h5>
+              <p>Speso: {{mont.total | currency : 'EUR' : 'symbol'}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head">Progressi Verso gli Obiettivi</div>
+  <div class="card-body" *ngFor="let mont of GoalsProgress">
+    <p *ngIf="GoalsProgress">Name Target: {{ mont.goal_name }}</p>
+    <p *ngIf="GoalsProgress">Total Target: {{ mont.target_amount | currency : 'EUR' : 'symbol' }}</p>
+    <p *ngIf="GoalsProgress">Total Saved: {{ mont.current_amount | currency : 'EUR' : 'symbol'}}</p>
+
+    <div class="progress">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        [style.width]="getProgressPercentage(mont.current_amount, mont.target_amount) + '%'"
+        [attr.aria-valuenow]="getProgressPercentage(mont.current_amount, mont.target_amount)"
+        aria-valuemin="0"
+        aria-valuemax="100"
+      >
+        {{ getProgressPercentage(mont.current_amount, mont.target_amount) }}%
+      </div>
+    </div>
+  </div>
 </div>

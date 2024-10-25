@@ -120,17 +120,24 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { MatDialogTitle,MatDialogContent } from '@angular/material/dialog';
 import { EditTransactionComponent } from './components/edit-transaction/edit-transaction.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 
+import {MatSelectModule} from '@angular/material/select';
+import { ReactiveFormsModule} from '@angular/forms';
+
 const CDK_MODULES = [
   CdkMenuModule,
   OverlayModule,
 ];
 const MATERIAL_MODULES = [
+  MatDividerModule,
+  MatGridListModule,
   MatFormFieldModule, 
   MatInputModule, 
   MatDatepickerModule,
@@ -145,6 +152,9 @@ const MATERIAL_MODULES = [
   MatDialogTitle,
   MatDialogContent,
   MatCardModule,
+
+  MatSelectModule,
+  ReactiveFormsModule,
   
 ];
 const COMPONENTS = [
